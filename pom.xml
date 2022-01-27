@@ -13,12 +13,6 @@
         <maven.compiler.target>15</maven.compiler.target>
     </properties>
 
-<!--    implementation 'org.springframework.boot:spring-boot-starter-webflux:2.6.2'-->
-<!--    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.2'-->
-
-<!--    implementation 'org.springframework.boot:spring-boot-starter:2.6.2'-->
-<!--    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.2'-->
-
     <dependencies>
         <dependency>
             <groupId>software.crldev</groupId>
