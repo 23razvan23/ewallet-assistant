@@ -4,6 +4,10 @@ server:
 spring:
   elrond:
     client:
-      gateway: devnet
-      readTimeoutMillis: 10000
-      writeTimeoutMillis: 10000
+      gateway: mainnet
+      readTimeoutMillis: 5000
+      writeTimeoutMillis: 5000
+    api:
+      url: mainnet
+      readTimeoutMillis: 5000
+      writeTimeoutMillis: 5000
