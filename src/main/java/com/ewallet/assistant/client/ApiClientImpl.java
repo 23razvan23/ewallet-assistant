@@ -2,6 +2,7 @@ package com.ewallet.assistant.client;
 
 import com.ewallet.assistant.config.ApiClientConfig;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,10 @@ import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static org.springframework.http.HttpMethod.GET;
@@ -32,7 +37,11 @@ public class ApiClientImpl {
         return processRequest(uri, responseType);
     }
 
-    private <T> Mono<T> processRequest(String uri, Class<T> responseType) {
+    public <T> Mono<List<T>> getCollection(String uri, Class<T> responseType) {
+        return processRequest(uri, collectionType(responseType));
+    }
+
+    private <T> Mono<T> processRequest(String uri, Type responseType) {
         return webClient.method(GET).uri(uri)
                 .exchangeToMono(this::bodyToMono)
                 .map(response -> deserializeResponse(responseType, response));
@@ -42,8 +51,12 @@ public class ApiClientImpl {
         return responseHolder.bodyToMono(String.class);
     }
 
-    private <T> T deserializeResponse(Class<T> responseType, String response) {
+    private <T> T deserializeResponse(Type responseType, String response) {
         return GSON.fromJson(response, responseType);
+    }
+
+    private <T> Type collectionType(Class<T> responseType) {
+        return TypeToken.getParameterized(ArrayList.class, responseType).getType();
     }
 
     private HttpClient httpClient(ApiClientConfig clientProperties) {

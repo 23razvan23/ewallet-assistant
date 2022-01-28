@@ -5,7 +5,7 @@ public enum ApiResourceUri {
 
     private final String uri;
 
-    private ApiResourceUri(final String uri) {
+    ApiResourceUri(final String uri) {
         this.uri = uri;
     }
 

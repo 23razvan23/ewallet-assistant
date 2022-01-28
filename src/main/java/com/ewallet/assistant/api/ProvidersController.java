@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @Component
 @RestController
 @RequestMapping("/providers")
@@ -19,6 +21,11 @@ public class ProvidersController {
     @Autowired
     public ProvidersController(ProviderService providerService) {
         this.providerService = providerService;
+    }
+
+    @GetMapping("/")
+    public Mono<List<Provider>> getAllProviders() {
+        return providerService.getAllProviders();
     }
 
     @GetMapping("/{address}")
