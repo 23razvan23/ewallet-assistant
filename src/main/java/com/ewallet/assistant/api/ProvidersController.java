@@ -1,6 +1,7 @@
 package com.ewallet.assistant.api;
 
 import com.ewallet.assistant.client.domain.Provider;
+import com.ewallet.assistant.client.domain.ProviderUnstakedTokens;
 import com.ewallet.assistant.service.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,5 +32,10 @@ public class ProvidersController {
     @GetMapping("/{address}")
     public Mono<Provider> getProvider(@PathVariable String address) {
         return providerService.getProvider(address);
+    }
+
+    @GetMapping("/{address}/stake")
+    public Mono<ProviderUnstakedTokens> getNextUnstakedTokensForProvider(@PathVariable String address) {
+        return providerService.getProviderUnstakedTokens(address);
     }
 }

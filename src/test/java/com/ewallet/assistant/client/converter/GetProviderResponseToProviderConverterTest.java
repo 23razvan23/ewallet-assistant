@@ -20,9 +20,9 @@ public class GetProviderResponseToProviderConverterTest {
     private static final int DEFAULT_NUM_NODES_VALUE = 2;
     private static final int DEFAULT_NUM_USERS_VALUE = 3;
     private static final boolean DEFAULT_FEATURED_VALUE = true;
-    public static final double DEFAULT_APR_VALUE = 5.05;
-    public static final String DEFAULT_PROVIDER_IDENTITY_VALUE = "provider_identity";
-    public static final String DEFAULT_ADDRESS_VALUE = "erd1qqqqxxxxxxx";
+    private static final double DEFAULT_APR_VALUE = 5.05;
+    private static final String DEFAULT_PROVIDER_IDENTITY_VALUE = "provider_identity";
+    private static final String DEFAULT_ADDRESS_VALUE = "erd1qqqqxxxxxxx";
 
     @Test
     public void testToDomainNullGetProviderResponse() {
@@ -31,7 +31,7 @@ public class GetProviderResponseToProviderConverterTest {
 
     @Test
     public void testToDomainValidGetProviderResponse() {
-        Provider result = GetProviderResponseToProviderConverter.toDomain(getProviderResponse());
+        var result = GetProviderResponseToProviderConverter.toDomain(getProviderResponse());
 
         assertNotNull(result);
         assertEquals(new BigInteger(DEFAULT_CUMULATED_REWARDS_VALUE), result.getCumulatedRewards());

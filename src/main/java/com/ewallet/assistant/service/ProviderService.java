@@ -2,8 +2,11 @@ package com.ewallet.assistant.service;
 
 import com.ewallet.assistant.client.ApiClientImpl;
 import com.ewallet.assistant.client.converter.GetProviderResponseToProviderConverter;
+import com.ewallet.assistant.client.converter.GetProviderUnstakedTokensResponseToProviderUnstakedTokensConverter;
 import com.ewallet.assistant.client.domain.Provider;
+import com.ewallet.assistant.client.domain.ProviderUnstakedTokens;
 import com.ewallet.assistant.client.model.GetProviderResponse;
+import com.ewallet.assistant.client.model.GetProviderUnstakedTokensResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
@@ -12,6 +15,7 @@ import java.util.List;
 
 import static com.ewallet.assistant.client.ApiResourceUri.PROVIDERS;
 import static com.ewallet.assistant.client.ApiResourceUri.PROVIDER_BY_ADDRESS;
+import static com.ewallet.assistant.client.ApiResourceUri.PROVIDER_UNSTAKED_TOKENS_BY_ADDRESS;
 import static java.lang.String.format;
 import static java.util.stream.Collectors.toList;
 
@@ -34,5 +38,10 @@ public class ProviderService {
     public Mono<Provider> getProvider(String address) {
         return apiClient.get(format(PROVIDER_BY_ADDRESS.getUri(), address), GetProviderResponse.class)
                 .map(GetProviderResponseToProviderConverter::toDomain);
+    }
+
+    public Mono<ProviderUnstakedTokens> getProviderUnstakedTokens(String address) {
+        return apiClient.get(format(PROVIDER_UNSTAKED_TOKENS_BY_ADDRESS.getUri(), address), GetProviderUnstakedTokensResponse.class)
+                .map(GetProviderUnstakedTokensResponseToProviderUnstakedTokensConverter::toDomain);
     }
 }
