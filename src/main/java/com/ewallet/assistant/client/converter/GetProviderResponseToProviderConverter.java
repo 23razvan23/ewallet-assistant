@@ -6,6 +6,9 @@ import com.ewallet.assistant.client.model.GetProviderResponse;
 public class GetProviderResponseToProviderConverter {
 
     public static Provider toDomain(GetProviderResponse response) {
+        if (response == null) {
+            return null;
+        }
         return Provider.builder()
                 .apr(response.getApr())
                 .address(response.getProvider())
