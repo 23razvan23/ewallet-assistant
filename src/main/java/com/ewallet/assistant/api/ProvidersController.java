@@ -35,7 +35,7 @@ public class ProvidersController {
     }
 
     @GetMapping("/{address}/stake")
-    public Mono<ProviderUnstakedTokens> getNextUnstakedTokensForProvider(@PathVariable String address) {
+    public Mono<ProviderUnstakedTokens> getProviderUnstakedTokens(@PathVariable String address) {
         return providerService.getProviderUnstakedTokens(address);
     }
 }

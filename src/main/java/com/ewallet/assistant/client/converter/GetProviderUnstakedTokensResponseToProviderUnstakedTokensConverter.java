@@ -6,6 +6,8 @@ import com.ewallet.assistant.client.model.GetProviderUnstakedTokensResponse;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
+import static com.ewallet.assistant.client.model.GetProviderUnstakedTokensResponse.GetProviderUnstakedTokenResponse;
+import static com.ewallet.assistant.client.domain.ProviderUnstakedTokens.ProviderUnstakedToken;
 
 public class GetProviderUnstakedTokensResponseToProviderUnstakedTokensConverter {
 
@@ -14,13 +16,12 @@ public class GetProviderUnstakedTokensResponseToProviderUnstakedTokensConverter 
             return null;
         }
 
-        List<GetProviderUnstakedTokensResponse.GetProviderUnstakedTokenResponse> providerUnstakedTokens = response.getUnstakedTokens();
         return ProviderUnstakedTokens.builder()
-                .providerUnstakedTokens(toDomain(providerUnstakedTokens))
+                .providerUnstakedTokens(toDomain(response.getUnstakedTokens()))
                 .build();
     }
 
-    private static List<ProviderUnstakedTokens.ProviderUnstakedToken> toDomain(List<GetProviderUnstakedTokensResponse.GetProviderUnstakedTokenResponse> response) {
+    private static List<ProviderUnstakedTokens.ProviderUnstakedToken> toDomain(List<GetProviderUnstakedTokenResponse> response) {
         if (response == null) {
             return null;
         }
@@ -30,8 +31,8 @@ public class GetProviderUnstakedTokensResponseToProviderUnstakedTokensConverter 
                 .collect(toList());
     }
 
-    private static ProviderUnstakedTokens.ProviderUnstakedToken toDomain(GetProviderUnstakedTokensResponse.GetProviderUnstakedTokenResponse response) {
-        return ProviderUnstakedTokens.ProviderUnstakedToken.builder()
+    private static ProviderUnstakedToken toDomain(GetProviderUnstakedTokenResponse response) {
+        return ProviderUnstakedToken.builder()
                 .availableTokens(response.getAmount())
                 .availableFrom(response.getExpires())
                 .build();

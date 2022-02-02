@@ -6,8 +6,10 @@ import org.junit.jupiter.api.Test;
 import java.math.BigInteger;
 import java.util.ArrayList;
 
+import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static org.junit.jupiter.api.Assertions.*;
+import static com.ewallet.assistant.client.model.GetProviderUnstakedTokensResponse.GetProviderUnstakedTokenResponse;
 
 public class GetProviderUnstakedTokensResponseToProviderUnstakedTokensConverterTest {
 
@@ -34,7 +36,7 @@ public class GetProviderUnstakedTokensResponseToProviderUnstakedTokensConverterT
     @Test
     public void testToDomainEmptyProviderUnstakedTokensResponse() {
         var response = GetProviderUnstakedTokensResponse.builder()
-                .unstakedTokens(new ArrayList<>())
+                .unstakedTokens(emptyList())
                 .build();
 
         var result = GetProviderUnstakedTokensResponseToProviderUnstakedTokensConverter.toDomain(response);
@@ -59,8 +61,8 @@ public class GetProviderUnstakedTokensResponseToProviderUnstakedTokensConverterT
         assertEquals(UNSTAKED_TOKEN_AVAILABLE_FROM_VALUE, result.getProviderUnstakedTokens().get(0).getAvailableFrom());
     }
 
-    private GetProviderUnstakedTokensResponse.GetProviderUnstakedTokenResponse getUnstakedTokenResponse() {
-        return GetProviderUnstakedTokensResponse.GetProviderUnstakedTokenResponse.builder()
+    private GetProviderUnstakedTokenResponse getUnstakedTokenResponse() {
+        return GetProviderUnstakedTokenResponse.builder()
                 .amount(new BigInteger(UNSTAKED_TOKEN_AVAILABLE_TOKENS_VALUE))
                 .expires(UNSTAKED_TOKEN_AVAILABLE_FROM_VALUE)
                 .build();
