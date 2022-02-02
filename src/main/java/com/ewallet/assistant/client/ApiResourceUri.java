@@ -1,7 +1,8 @@
 package com.ewallet.assistant.client;
 
 public enum ApiResourceUri {
-    PROVIDERS("providers"), PROVIDER_BY_ADDRESS("providers/%s"), PROVIDER_UNSTAKED_TOKENS_BY_ADDRESS("accounts/%s/stake");
+    PROVIDERS("providers"), PROVIDER_BY_ADDRESS("providers/%s"), PROVIDER_UNSTAKED_TOKENS_BY_ADDRESS("accounts/%s/stake"),
+    ECONOMICS("economics");
 
     private final String uri;
 

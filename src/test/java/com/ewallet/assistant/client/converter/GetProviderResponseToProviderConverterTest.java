@@ -1,6 +1,5 @@
 package com.ewallet.assistant.client.converter;
 
-import com.ewallet.assistant.client.domain.Provider;
 import com.ewallet.assistant.client.model.GetProviderResponse;
 import org.junit.jupiter.api.Test;
 

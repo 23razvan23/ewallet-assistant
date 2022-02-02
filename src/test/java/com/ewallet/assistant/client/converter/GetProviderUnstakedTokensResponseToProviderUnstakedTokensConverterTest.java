@@ -4,7 +4,6 @@ import com.ewallet.assistant.client.model.GetProviderUnstakedTokensResponse;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
